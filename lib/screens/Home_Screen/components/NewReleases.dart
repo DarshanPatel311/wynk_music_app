@@ -2,11 +2,11 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wynk_music_app/screens/song_screen.dart';
+import 'package:wynk_music_app/screens/Song_Screen/song_screen.dart';
 
-import '../provider/music_provider.dart';
-import '../utils/audio_list.dart';
-import '../utils/img_list.dart';
+import '../../../provider/music_provider.dart';
+import '../../../utils/audio_list.dart';
+import '../../../utils/img_list.dart';
 
 class NewReels extends StatelessWidget {
   const NewReels({
@@ -56,10 +56,10 @@ class NewReels extends StatelessWidget {
                         onPressed: () {
                           providerTrue.isplay=false;
                           Audio audio = audioList2[index];
-
+                          providerFalse.changeIndex(index);
                           providerFalse.assetsAudioPlayer!.open(audio);
 
-                          Navigator.of(context).pushNamed('/song',arguments: Img2[index]);
+                          Navigator.of(context).pushNamed('/song2',arguments: Img2[index]);
 
 
 

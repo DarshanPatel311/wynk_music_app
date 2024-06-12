@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wynk_music_app/screens/home_screen.dart';
+import 'package:wynk_music_app/screens/Home_Screen/home_screen.dart';
 
 
-import '../provider/music_provider.dart';
-import '../utils/img_list.dart';
+import '../../provider/music_provider.dart';
+import '../../utils/img_list.dart';
+import 'components/Song_Slider.dart';
+import 'components/Song_time.dart';
+import 'components/controlbutton.dart';
 
 
 class SongScreen extends StatefulWidget {
@@ -100,7 +103,7 @@ class _SongScreenState extends State<SongScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Animal Love Song",
+                        Img[providerTrue.currentIndex]['name'],
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -114,7 +117,7 @@ class _SongScreenState extends State<SongScreen> {
                             color: Colors.grey.shade300,
                           ),
                           Text(
-                            "Gaman Santhal",
+                            Img[providerTrue.currentIndex]['SingerName'].toString(),
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
@@ -135,87 +138,11 @@ class _SongScreenState extends State<SongScreen> {
                 ],
               ),
             ),
-            Slider(
-              value: providerTrue.sliderValue,
-              max: providerTrue.maxDuration > 0
-                  ? providerTrue.maxDuration
-                  : 1.0,
-              onChanged: (value) {
-                if (providerTrue.maxDuration > 0) {
-                  providerTrue.seek(value);
-                }
-              },
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.repeat_one_outlined,
-                  color: Colors.green,
-                  size: 35,
-                ),
-                SizedBox(),
-                IconButton(
-                  onPressed: () {
-                    providerTrue.assetsAudioPlayer!.previous();
-                    providerFalse.playPreviousSong();
-
-                  },
-                  icon: Icon(
-                    Icons.fast_rewind,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                ),
-                (providerFalse.isplay)?
-                IconButton(
-                  onPressed: () {
-                    providerFalse.assetsAudioPlayer!.play();
-
-                    providerTrue.songplay();
-                  },
-                  icon: Icon(
-                    Icons.play_circle_fill,
-                    color: Colors.white,
-                    size: 75,
-                  ),
-                ) :IconButton(
-                  onPressed: () {
-                   setState(() {
-                     providerFalse.assetsAudioPlayer!.pause();
-
-                     providerTrue.songplay();
-                   });
-                  },
-                  icon: Icon(
-                    Icons.pause_circle,
-                    color: Colors.white,
-                    size: 75,
-                  ),
-                )
-               ,
-                IconButton(
-                  onPressed: () {
+            Song_Slider(context, providerFalse, providerTrue),
+            Song_time(providerTrue),
 
 
-
-
-                  },
-                  icon: Icon(
-                    Icons.fast_forward_sharp,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                ),
-                SizedBox(),
-                Icon(
-                  Icons.timer_outlined,
-                  color: Colors.white,
-                  size: 30,
-                ),
-              ],
-            ),
+            control_button(providerTrue, providerFalse),
             Row(
               children: [
                 IconButton(onPressed: () {

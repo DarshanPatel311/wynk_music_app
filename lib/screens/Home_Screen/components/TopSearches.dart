@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/music_provider.dart';
-import '../utils/audio_list.dart';
-import '../utils/img_list.dart';
+import '../../../provider/music_provider.dart';
+import '../../../utils/audio_list.dart';
+import '../../../utils/img_list.dart';
 
 class TopSearches extends StatelessWidget {
   const TopSearches({
@@ -52,6 +52,7 @@ class TopSearches extends StatelessWidget {
                           Audio audio = audioList[index];
                           providerTrue.isplay=false;
                           providerFalse.assetsAudioPlayer!.open(audio);
+                          providerFalse.changeIndex(index);
 
                           Navigator.of(context).pushNamed('/song',arguments: Img[index]);
                         },
