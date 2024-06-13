@@ -63,6 +63,9 @@ List Img2 = [
     'img': "assets/img/all_image/rangila.jpg",
     'name': "Rangila",
     'SingerName':"Sabhiben Ahir"
+
+
+
   },
   {
     'img': "assets/img/all_image/sangrahiyo.jpg",
